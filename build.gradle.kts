@@ -7,9 +7,9 @@ plugins {
     // Java support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.6.10"
+    id("org.jetbrains.kotlin.jvm") version "1.7.0"
     // Gradle IntelliJ Plugin
-    id("org.jetbrains.intellij") version "1.4.0"
+    id("org.jetbrains.intellij") version "1.6.0"
     // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "1.3.1"
     // Gradle Qodana Plugin
@@ -52,11 +52,15 @@ tasks {
     // Set the JVM compatibility versions
     properties("javaVersion").let {
         withType<JavaCompile> {
-            sourceCompatibility = it
-            targetCompatibility = it
+            sourceCompatibility = "1.8"
+            targetCompatibility = "1.8"
         }
         withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = it
+            kotlinOptions{
+                jvmTarget = "11"
+                // For creation of default methods in interfaces
+                freeCompilerArgs = listOf("-Xjvm-default=all")
+            }
         }
     }
 

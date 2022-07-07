@@ -9,10 +9,18 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.spragucm.intellijkotlindsluidatabinding.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.spragucm.intellijkotlindsluidatabinding.services.MyProjectService"/>
+
+        <applicationConfigurable id="democonfigurable"
+                                 instance="com.github.spragucm.intellijkotlindsluidatabinding.DemoConfigurable"
+                                 dynamic="true"
+                                 bundle="messages.MyBundle"
+                                 groupId="tools"/>
+
     </extensions>
 
     <applicationListeners>
         <listener class="com.github.spragucm.intellijkotlindsluidatabinding.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+
 </idea-plugin>
